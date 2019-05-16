@@ -1,0 +1,16 @@
+whisk:
+    ingress:
+        type: NodePort
+        api_host_name: 146.179.131.174
+        api_host_port: 31001
+nginx:
+    httpsNodePort: 31001
+invoker:
+    replicaCount: 3
+k8s:
+    persistence:
+        enabled: false
+controller:
+    imageName: "ostenbom/whisk-controller"
+    imageTag: "latest"
+
