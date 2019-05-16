@@ -5,22 +5,11 @@
 
 {{/* Generic core affinity */}}
 {{- define "openwhisk.affinity.core" -}}
-# prefer to not run on an invoker node (only prefer because of single node clusters)
+# require to run on core node
 nodeAffinity:
-  preferredDuringSchedulingIgnoredDuringExecution:
-  - weight: 100
-    preference:
-      matchExpressions:
-      - key: openwhisk-role
-        operator: NotIn
-        values:
-        - {{ .Values.affinity.invokerNodeLabel }}
-# prefer to run on a core node
-nodeAffinity:
-  preferredDuringSchedulingIgnoredDuringExecution:
-  - weight: 80
-    preference:
-      matchExpressions:
+  requiredDuringSchedulingIgnoredDuringExecution:
+    nodeSelectorTerms:
+    - matchExpressions:
       - key: openwhisk-role
         operator: In
         values:

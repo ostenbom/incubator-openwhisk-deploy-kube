@@ -21,7 +21,6 @@ spec:
 {{ include "openwhisk.label_boilerplate" . | indent 8 }}
     spec:
       restartPolicy: {{ .Values.db.restartPolicy }}
-
       {{- if .Values.affinity.enabled }}
       affinity:
 {{ include "openwhisk.affinity.core" . | indent 8 }}
