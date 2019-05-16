@@ -10,6 +10,10 @@ metadata:
 {{ include "openwhisk.label_boilerplate" . | indent 4 }}
 spec:
   restartPolicy: Always
+  {{- if .Values.affinity.enabled }}
+  affinity:
+{{ include "openwhisk.affinity.core" . | indent 4 }}
+  {{- end }}
 {{ include "openwhisk.docker.imagePullSecrets" . | indent 2 }}
   containers:
   - name: wskadmin

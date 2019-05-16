@@ -21,6 +21,10 @@ spec:
 {{ include "openwhisk.label_boilerplate" . | indent 8 }}
     spec:
       restartPolicy: {{ .Values.providers.cloudant.restartPolicy }}
+      {{- if .Values.affinity.enabled }}
+      affinity:
+{{ include "openwhisk.affinity.core" . | indent 8 }}
+      {{- end }}
       volumes:
         - name: cloudant-logs
 {{- if .Values.k8s.persistence.enabled }}

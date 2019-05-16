@@ -23,7 +23,7 @@ spec:
 
       {{- if .Values.affinity.enabled }}
       affinity:
-{{ include "openwhisk.affinity.edge" . | indent 8 }}
+{{ include "openwhisk.affinity.core" . | indent 8 }}
 {{ include "openwhisk.affinity.selfAntiAffinity" ( printf "%s-nginx" .Release.Name ) | indent 8 }}
       {{- end }}
 
